@@ -1,5 +1,8 @@
 #include <wiringPi.h>
 #include <time.h>
+#include <stdio.h>
+
+#define SIZE 256
 
 int main (void)
 {
