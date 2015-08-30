@@ -588,7 +588,8 @@ void RCSwitch::handleInterrupt() {
          
                                   if (receiveProtocol2(changeCount) == false){
      
-                                                             printf("Unknown protocol.\n");                 
+                                                             printf("Unknown protocol.\n"); 
+                                                                             
                                                                    }
           
                                                                          }
