@@ -12,12 +12,12 @@
 
 int main (void)
 {
-
+/*
   int f = 440;                //frequency
   int fs = 48000;             //sampling frequency
 
 float buffer [fs];
-
+*/
   char bufferTimmer[SIZE];
   time_t curtime;
   struct tm *loctime;
@@ -48,17 +48,15 @@ float buffer [fs];
 */
 
 wiringPiSetup () ;
-   /*
+   
      softToneCreate (PIN);
      
      softToneWrite (PIN, FRECUENCY);
-*/
+
 /*
   wiringPiSetup () ;
   pinMode (PIN, OUTPUT) ;
   */
-  pinMode (PIN, OUTPUT) ;
-  digitalWrite (PIN, LOW) ;
   
   /*
   for (;;)
