@@ -560,33 +560,54 @@ bool RCSwitch::receiveProtocol2(unsigned int changeCount){
 
 void RCSwitch::handleInterrupt() {
 
-  static unsigned int duration;
+ 
+ static unsigned int duration;
+ 
   static unsigned int changeCount;
+  
   static unsigned long lastTime;
-  static unsigned int repeatCount;
+ 
+   static unsigned int repeatCount;
 
-  long time = micros();
-  duration = time - lastTime;
+ 
+    long time = micros();
+  
+    duration = time - lastTime;
 
-  if (duration > 5000 && duration > RCSwitch::timings[0] - 200 && duration < RCSwitch::timings[0] + 200) {    
+  
+    if (duration > 5000 && duration > RCSwitch::timings[0] - 200 && duration < RCSwitch::timings[0] + 200) {  
+      
     repeatCount++;
-    changeCount--;
+    
+      changeCount--;
 
-    if (repeatCount == 2) {
-                if (receiveProtocol1(changeCount) == false){
-                        if (receiveProtocol2(changeCount) == false){
-                                //failed
-                        }
-                }
-      repeatCount = 0;
-    }
-    changeCount = 0;
-  } else if (duration > 5000) {
-    changeCount = 0;
-  }
+  
+        if (repeatCount == 2) {
+     
+                   if (receiveProtocol1(changeCount) == false){
+         
+                                  if (receiveProtocol2(changeCount) == false){
+     
+                                                             printf("Unknown protocol.\n");                 
+                                                                   }
+          
+                                                                         }
+   
+                                                                            repeatCount = 0;
+  
+                                                                              }
+   
+                                                                               changeCount = 0;
+  
+                                                                               } else if (duration > 5000) {
+ 
+                                                                                  changeCount = 0;
+ 
+                                                                                   }
 
   if (changeCount >= RCSWITCH_MAX_CHANGES) {
-    changeCount = 0;
+   
+                                                                                    changeCount = 0;
     repeatCount = 0;
   }
   RCSwitch::timings[changeCount++] = duration;
