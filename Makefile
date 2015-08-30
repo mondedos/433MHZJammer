@@ -1,10 +1,5 @@
-all: main.o
-	$(CXX) main.o -o Jammer
-	
-main.o: main.c
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.c -o main.o -lwiringPi
-	
-	
+all: 
+	$(CXX)  -Wall -o Jammer main.c -lwiringPi
 
 clean:
 	$(RM) *.o main.o
