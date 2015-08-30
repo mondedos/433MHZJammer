@@ -1,13 +1,24 @@
 #include <wiringPi.h>
+#include <softTone.h>
 #include <time.h>
 #include <stdio.h>
+#include <math.h>
 
 #define SIZE 256
+
+ #define PIN     0
+ 
+ #define FRECUENCY 15000
 
 int main (void)
 {
 
-  char buffer[SIZE];
+  int f = 440;                //frequency
+  int fs = 48000;             //sampling frequency
+
+float buffer [fs];
+
+  char bufferTimmer[SIZE];
   time_t curtime;
   struct tm *loctime;
 
@@ -21,22 +32,39 @@ int main (void)
   fputs (asctime (loctime), stdout);
 
   /* Print it out in a nice format. */
-  strftime (buffer, SIZE, "Today is %A, %B %d.\n", loctime);
-  fputs (buffer, stdout);
-  strftime (buffer, SIZE, "The time is %I:%M %p.\n", loctime);
-  fputs (buffer, stdout);
+  strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", loctime);
+  fputs (bufferTimmer, stdout);
+  strftime (bufferTimmer, SIZE, "The time is %I:%M %p.\n", loctime);
+  fputs (bufferTimmer, stdout);
   
+  /*
+   printf("Sine tone at %dHz ",f);
+
+        for (k=0; k<BUFFER_LEN; k++){
+
+            buffer[k] = (sin(2*M_PI*f/fs*k));                 //sine wave value generation                        
+            } 
+
+*/
+
+wiringPiSetup () ;
+   /*
+     softToneCreate (PIN);
+     
+     softToneWrite (PIN, FRECUENCY);
+*/
 /*
   wiringPiSetup () ;
-  pinMode (0, OUTPUT) ;
+  pinMode (PIN, OUTPUT) ;
   */
-  //digitalWrite (0, HIGH) ;
+  pinMode (PIN, OUTPUT) ;
+  digitalWrite (PIN, LOW) ;
   
   /*
   for (;;)
   {
-    digitalWrite (0, HIGH) ; delay (500) ;
-    digitalWrite (0,  LOW) ; delay (500) ;
+    digitalWrite (PIN, HIGH) ; delay (500) ;
+    digitalWrite (PIN,  LOW) ; delay (500) ;
   }
   return 0 ;
   
