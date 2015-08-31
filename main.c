@@ -27,12 +27,18 @@ printf("\n");
 printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
+printf("%s -t <Hora inicio> <Hora Fin> => Inhibir entre dos horas con formato HH:mm.\n",argv[0]);
     return EXIT_FAILURE;
 }
 if(argc==2){
  
+ wiringPiSetup () ;
+ 
  if(strcmp("-r", argv[1])==0){
  return  ResetPin();
+ }
+ else if(strcmp("-i", argv[1])==0){
+   return  InhibirAhora();
  }
  
 }
@@ -51,11 +57,9 @@ if(argc==2){
 
 */
 
-wiringPiSetup () ;
+
    
-     softToneCreate (PIN);
-     
-     softToneWrite (PIN, FRECUENCY);
+
 
 
   /*
@@ -71,9 +75,18 @@ wiringPiSetup () ;
   return EXIT_SUCCESS;
 }
 
+int InhibirAhora(){
+ 
+ softToneCreate (PIN);
+ 
+ softToneWrite (PIN, FRECUENCY);
+
+ return EXIT_SUCCESS;
+}
+
 int InhibirConTemporizador(){
  
-   char bufferTimmer[SIZE];
+  char bufferTimmer[SIZE];
   time_t curtime;
   struct tm *loctime;
   
@@ -92,13 +105,10 @@ int InhibirConTemporizador(){
   strftime (bufferTimmer, SIZE, "The time is %I:%M %p.\n", loctime);
   fputs (bufferTimmer, stdout);
  
- 
  return EXIT_SUCCESS;
 }
 
 int ResetPin(){
- 
- wiringPiSetup () ;
  
   pinMode (PIN, OUTPUT) ;
   
