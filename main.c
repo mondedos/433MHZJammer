@@ -63,14 +63,8 @@ int ResetPin(){
 
 int main (int argc, char **argv, char **envp)
 {
-/*
-  int f = 440;                //frequency
-  int fs = 48000;             //sampling frequency
-
-float buffer [fs];
-*/
-
-
+ 
+}
 if(argc==1 || strcmp("-h", argv[1])==0)
 {
     printf("Uso de %s\n",argv[0]);
@@ -109,24 +103,6 @@ else if(argc>2){
    return InhibirAhoraFrecuencia(frecuencia);
  }
 }
-
-
-  
-  
-  /*
-   printf("Sine tone at %dHz ",f);
-
-        for (k=0; k<BUFFER_LEN; k++){
-
-            buffer[k] = (sin(2*M_PI*f/fs*k));                 //sine wave value generation                        
-            } 
-
-*/
-
-
-   
-
-
 
   /*
   for (;;)
