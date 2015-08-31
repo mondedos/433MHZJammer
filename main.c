@@ -32,7 +32,7 @@ printf("%s -i => Inhibir ahora.\n",argv[0]);
 if(argc==2){
  
  if(strcmp("-r", argv[1])==0){
-  ResetPin();
+ return  ResetPin();
  }
  
 }
@@ -102,4 +102,5 @@ int ResetPin(){
   
   digitalWrite (PIN,  LOW) ;
   
+  return 0;
 }
