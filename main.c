@@ -28,7 +28,7 @@ if(argc==1 || strcmp("h", argv[1])==0)/*3 because even the executables name stri
 printf("\n");
 printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
-printf("%s -i => Hinibir ahora.\n",argv[0]);
+printf("%s -i => Inhibir ahora.\n",argv[0]);
     return -1;
 }
 
