@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <math.h>
 
+#define EXIT_FAILURE -1
+#define EXIT_SUCCESS 0
+
 #define SIZE 256
 
  #define PIN     0
