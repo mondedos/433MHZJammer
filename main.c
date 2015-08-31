@@ -18,9 +18,7 @@ int main (int argc, char **argv, char **envp)
 
 float buffer [fs];
 */
-  char bufferTimmer[SIZE];
-  time_t curtime;
-  struct tm *loctime;
+
 
 if(argc==1 || strcmp("h", argv[1])==0)/*3 because even the executables name string is on argc*/
 {
@@ -32,20 +30,9 @@ printf("%s -i => Inhibir ahora.\n",argv[0]);
     return -1;
 }
 
-  /* Get the current time. */
-  curtime = time (NULL);
 
-  /* Convert it to local time representation. */
-  loctime = localtime (&curtime);
 
-  /* Print out the date and time in the standard format. */
-  fputs (asctime (loctime), stdout);
-
-  /* Print it out in a nice format. */
-  strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", loctime);
-  fputs (bufferTimmer, stdout);
-  strftime (bufferTimmer, SIZE, "The time is %I:%M %p.\n", loctime);
-  fputs (bufferTimmer, stdout);
+  
   
   /*
    printf("Sine tone at %dHz ",f);
@@ -77,4 +64,29 @@ wiringPiSetup () ;
   return 0 ;
   
   */
+}
+
+int InhibirConTemporizador(){
+ 
+   char bufferTimmer[SIZE];
+  time_t curtime;
+  struct tm *loctime;
+  
+    /* Get the current time. */
+  curtime = time (NULL);
+
+  /* Convert it to local time representation. */
+  loctime = localtime (&curtime);
+
+  /* Print out the date and time in the standard format. */
+  fputs (asctime (loctime), stdout);
+ 
+ /* Print it out in a nice format. */
+  strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", loctime);
+  fputs (bufferTimmer, stdout);
+  strftime (bufferTimmer, SIZE, "The time is %I:%M %p.\n", loctime);
+  fputs (bufferTimmer, stdout);
+ 
+ 
+ return 0;
 }
