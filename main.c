@@ -12,8 +12,9 @@
 
  #define PIN     0
  
- #define FRECUENCY 15000
+ #define FRECUENCY 5000
  #define MINFRECUENCY 1500
+ #define MAXFRECUENCY 5000
 
 
 int InhibirAhoraFrecuencia(int frecuencia){
@@ -55,6 +56,8 @@ int ResetPin(){
   
   digitalWrite (PIN,  LOW) ;
   
+  softToneStop(PIN);
+  
   return EXIT_SUCCESS;
 }
 
@@ -75,7 +78,7 @@ printf("\n");
 printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
-printf("%s -i -f frecuencia => Inhibir ahora.\n",argv[0]);
+printf("%s -i -f frecuencia => Inhibir ahora con una frecuenca en KHz.\n",argv[0]);
 printf("%s -t <Hora inicio> <Hora Fin> => Inhibir entre dos horas con formato HH:mm.\n",argv[0]);
     return EXIT_FAILURE;
 }
@@ -96,7 +99,7 @@ else if(argc>2){
   int frecuencia = atoi(argv[3]);
   
   if(frecuencia<MINFRECUENCY){
-   printf("La frecuencia no puede ser inferior a %dMHZ\n",MINFRECUENCY);
+   printf("La frecuencia no puede ser inferior a %dKhz ni superior a %dKhz.\n",MINFRECUENCY,MAXFRECUENCY);
     return EXIT_FAILURE;
   }
   
