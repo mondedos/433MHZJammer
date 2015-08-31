@@ -10,7 +10,7 @@
  
  #define FRECUENCY 15000
 
-int main (void)
+int main (int argc, char **argv, char **envp)
 {
 /*
   int f = 440;                //frequency
@@ -21,6 +21,16 @@ float buffer [fs];
   char bufferTimmer[SIZE];
   time_t curtime;
   struct tm *loctime;
+
+if(argc==1 || strcmp("h", argv[1])==0)/*3 because even the executables name string is on argc*/
+{
+    printf("Uso de %s\n",argv[0]);
+printf("\n");
+printf("%s -h => Ayuda.\n",argv[0]);
+printf("%s -r => Apagado del módulo.\n",argv[0]);
+printf("%s -i => Hinibir ahora.\n",argv[0]);
+    return -1;
+}
 
   /* Get the current time. */
   curtime = time (NULL);
