@@ -78,7 +78,7 @@ printf("\n");
 printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
-printf("%s -i -f frecuencia => Inhibir ahora con una frecuenca en KHz.\n",argv[0]);
+printf("%s -i -f frecuencia => Inhibir ahora con una frecuenca en Hz.\n",argv[0]);
 printf("%s -t <Hora inicio> <Hora Fin> => Inhibir entre dos horas con formato HH:mm.\n",argv[0]);
     return EXIT_FAILURE;
 }
@@ -92,6 +92,9 @@ if(argc==2){
  else if(strcmp("-i", argv[1])==0){
    return InhibirAhoraFrecuencia(FRECUENCY);
  }
+ else if(strcmp("-t", argv[1])==0){
+   return InhibirConTemporizador();
+ }
  
 }
 else if(argc>2){
@@ -99,7 +102,7 @@ else if(argc>2){
   int frecuencia = atoi(argv[3]);
   
   if(frecuencia<MINFRECUENCY){
-   printf("La frecuencia no puede ser inferior a %dKhz ni superior a %dKhz.\n",MINFRECUENCY,MAXFRECUENCY);
+   printf("La frecuencia no puede ser inferior a %dHz ni superior a %dHz.\n",MINFRECUENCY,MAXFRECUENCY);
     return EXIT_FAILURE;
   }
   
