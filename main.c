@@ -93,7 +93,7 @@ if(argc==2){
 }
 else if(argc>2){
  if(argc==4 && strcmp("-i", argv[1])==0 &&strcmp("-f", argv[2])==0){
-  int frecuencia = atoi(sargv[3]);
+  int frecuencia = atoi(argv[3]);
   
   if(frecuencia<MINFRECUENCY){
    printf("La frecuencia no puede ser inferior a %dMHZ\n",MINFRECUENCY);
