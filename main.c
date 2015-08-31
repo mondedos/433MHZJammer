@@ -20,7 +20,7 @@ float buffer [fs];
 */
 
 
-if(argc==1 || strcmp("h", argv[1])==0)/*3 because even the executables name string is on argc*/
+if(argc==1 || strcmp("-h", argv[1])==0)
 {
     printf("Uso de %s\n",argv[0]);
 printf("\n");
@@ -28,6 +28,13 @@ printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
     return -1;
+}
+if(argc==2){
+ 
+ if(strcmp("-r", argv[1])==0){
+  ResetPin();
+ }
+ 
 }
 
 
@@ -50,11 +57,7 @@ wiringPiSetup () ;
      
      softToneWrite (PIN, FRECUENCY);
 
-/*
-  wiringPiSetup () ;
-  pinMode (PIN, OUTPUT) ;
-  */
-  
+
   /*
   for (;;)
   {
@@ -89,4 +92,14 @@ int InhibirConTemporizador(){
  
  
  return 0;
+}
+
+int ResetPin(){
+ 
+ wiringPiSetup () ;
+ 
+  pinMode (PIN, OUTPUT) ;
+  
+  digitalWrite (PIN,  LOW) ;
+  
 }
