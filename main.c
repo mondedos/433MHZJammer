@@ -27,7 +27,7 @@ printf("\n");
 printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
-    return -1;
+    return EXIT_FAILURE;
 }
 if(argc==2){
  
@@ -67,6 +67,8 @@ wiringPiSetup () ;
   return 0 ;
   
   */
+  
+  return EXIT_SUCCESS;
 }
 
 int InhibirConTemporizador(){
@@ -91,7 +93,7 @@ int InhibirConTemporizador(){
   fputs (bufferTimmer, stdout);
  
  
- return 0;
+ return EXIT_SUCCESS;
 }
 
 int ResetPin(){
@@ -102,5 +104,5 @@ int ResetPin(){
   
   digitalWrite (PIN,  LOW) ;
   
-  return 0;
+  return EXIT_SUCCESS;
 }
