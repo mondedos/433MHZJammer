@@ -14,6 +14,48 @@
  
  #define FRECUENCY 15000
 
+int InhibirAhora(){
+ 
+ softToneCreate (PIN);
+ 
+ softToneWrite (PIN, FRECUENCY);
+
+ return EXIT_SUCCESS;
+}
+
+int InhibirConTemporizador(){
+ 
+  char bufferTimmer[SIZE];
+  time_t curtime;
+  struct tm *loctime;
+  
+    /* Get the current time. */
+  curtime = time (NULL);
+
+  /* Convert it to local time representation. */
+  loctime = localtime (&curtime);
+
+  /* Print out the date and time in the standard format. */
+  fputs (asctime (loctime), stdout);
+ 
+ /* Print it out in a nice format. */
+  strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", loctime);
+  fputs (bufferTimmer, stdout);
+  strftime (bufferTimmer, SIZE, "The time is %I:%M %p.\n", loctime);
+  fputs (bufferTimmer, stdout);
+ 
+ return EXIT_SUCCESS;
+}
+
+int ResetPin(){
+ 
+  pinMode (PIN, OUTPUT) ;
+  
+  digitalWrite (PIN,  LOW) ;
+  
+  return EXIT_SUCCESS;
+}
+
 int main (int argc, char **argv, char **envp)
 {
 /*
@@ -79,44 +121,4 @@ if(argc==2){
   return EXIT_SUCCESS;
 }
 
-int InhibirAhora(){
- 
- softToneCreate (PIN);
- 
- softToneWrite (PIN, FRECUENCY);
 
- return EXIT_SUCCESS;
-}
-
-int InhibirConTemporizador(){
- 
-  char bufferTimmer[SIZE];
-  time_t curtime;
-  struct tm *loctime;
-  
-    /* Get the current time. */
-  curtime = time (NULL);
-
-  /* Convert it to local time representation. */
-  loctime = localtime (&curtime);
-
-  /* Print out the date and time in the standard format. */
-  fputs (asctime (loctime), stdout);
- 
- /* Print it out in a nice format. */
-  strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", loctime);
-  fputs (bufferTimmer, stdout);
-  strftime (bufferTimmer, SIZE, "The time is %I:%M %p.\n", loctime);
-  fputs (bufferTimmer, stdout);
- 
- return EXIT_SUCCESS;
-}
-
-int ResetPin(){
- 
-  pinMode (PIN, OUTPUT) ;
-  
-  digitalWrite (PIN,  LOW) ;
-  
-  return EXIT_SUCCESS;
-}
