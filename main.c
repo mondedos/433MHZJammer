@@ -3,6 +3,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 
 #define EXIT_FAILURE -1
 #define EXIT_SUCCESS 0
