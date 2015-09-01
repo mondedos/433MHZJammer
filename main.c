@@ -35,7 +35,7 @@ int InhibirConTemporizadorDelayStr(const char *inputStr){
  strptime(inputStr, "%T", &ltm);
  mktime(&ltm);
  
-   strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", ltm);
+   strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", &ltm);
   fputs (bufferTimmer, stdout);
  
  exit(EXIT_SUCCESS);
