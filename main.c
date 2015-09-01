@@ -99,15 +99,14 @@ if(argc==2){
  else if(strcmp("-i", argv[1])==0){
    return InhibirAhoraFrecuencia(FRECUENCY);
  }
- else if(strcmp("-t", argv[1])==0){
-  puts(argv[2]);
-   return InhibirConTemporizadorDelayStr(argv[2]);
- }
- 
 }
 else if(argc>2){
  if(argc==3 && strcmp("-d", argv[1])==0){
   //delay de timestamp
+ }
+ else if(argc==3 && strcmp("-t", argv[1])==0){
+  puts(argv[2]);
+   return InhibirConTemporizadorDelayStr(argv[2]);
  }
  
  if(argc==4 && strcmp("-i", argv[1])==0 &&strcmp("-f", argv[2])==0){
