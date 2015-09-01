@@ -29,13 +29,11 @@ int InhibirConTemporizadorDelayStr(const char *inputStr){
  struct tm ltm = {0};
  
  char bufferTimmer[255];
- 
- puts(inputStr);
- 
+
  strptime(inputStr, "%T", &ltm);
  mktime(&ltm);
  
-   strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", &ltm);
+   strftime (bufferTimmer, SIZE, "Today is %A, %B %d %Y %H:%M.\n", &ltm);
   fputs (bufferTimmer, stdout);
  
  exit(EXIT_SUCCESS);
