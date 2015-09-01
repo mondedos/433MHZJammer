@@ -17,14 +17,51 @@
  #define MAXFRECUENCY 5000
 
 
+int ResetPin(){
+ 
+  pinMode (PIN, OUTPUT) ;
+  
+  digitalWrite (PIN,  LOW) ;
+  
+  softToneStop(PIN);
+  
+  return EXIT_SUCCESS;
+}
+
 int InhibirAhoraFrecuencia(int frecuencia){
  
  softToneCreate (PIN);
+ 
+ printf("Tono de frecuencia %dHz.\n",frecuencia);
  
  softToneWrite (PIN, frecuencia);
 
  return EXIT_SUCCESS;
 }
+
+int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
+ struct tm ltm = {0};
+ long            ms; // Milliseconds
+ 
+ strptime(inputStr, "%T", &ltm);
+ mktime(&ltm);
+ 
+ ms=(long)(ltm.tm_hour*60*60)+(long)(ltm.tm_min*60)+(long)ltm.tm_sec;
+ //ms = round(timespan.tv_nsec / 1.0e6); 
+ 
+  ms=ms*1000;
+  
+  printf("Empezará dentro de  = %ld (mllisegundos)\n", ms*1000);
+ 
+ delay(ms);
+ 
+ puts("Empieza la fiesta ;)");
+ 
+ //exit InhibirAhoraFrecuencia(frecuencia);
+ 
+ return EXIT_SUCCESS;
+}
+
 int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const char *inputStrFin,int frecuencia){
  int resultado;
   struct tm ltm = {0};
@@ -52,28 +89,7 @@ int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const cha
  
  return ResetPin();
 }
-int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
- struct tm ltm = {0};
- long            ms; // Milliseconds
- 
- strptime(inputStr, "%T", &ltm);
- mktime(&ltm);
- 
- ms=(long)(ltm.tm_hour*60*60)+(long)(ltm.tm_min*60)+(long)ltm.tm_sec;
- //ms = round(timespan.tv_nsec / 1.0e6); 
- 
-  ms=ms*1000;
-  
-  printf("Empezará dentro de  = %ld (mllisegundos)\n", ms*1000);
- 
- delay(ms);
- 
- puts("Empieza la fiesta ;)");
- 
- //exit InhibirAhoraFrecuencia(frecuencia);
- 
- return EXIT_SUCCESS;
-}
+
 int InhibirConTemporizador(){
  
   char bufferTimmer[SIZE];
@@ -98,16 +114,7 @@ int InhibirConTemporizador(){
  return EXIT_SUCCESS;
 }
 
-int ResetPin(){
- 
-  pinMode (PIN, OUTPUT) ;
-  
-  digitalWrite (PIN,  LOW) ;
-  
-  softToneStop(PIN);
-  
-  return EXIT_SUCCESS;
-}
+
 
 int main (int argc, char **argv, char **envp)
 {
