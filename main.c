@@ -25,6 +25,33 @@ int InhibirAhoraFrecuencia(int frecuencia){
 
  return EXIT_SUCCESS;
 }
+int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const char *inputStrFin,int frecuencia){
+ int resultado;
+  struct tm ltm = {0};
+ long            ms; // Milliseconds
+ 
+ strptime(inputStrFin, "%T", &ltm);
+ mktime(&ltm);
+ 
+ ms=(long)(ltm.tm_hour*60*60)+(long)(ltm.tm_min*60)+(long)ltm.tm_sec;
+ //ms = round(timespan.tv_nsec / 1.0e6); 
+ 
+  ms=ms*1000;
+  
+ resultado= InhibirConTemporizadorDelayStr(inputStrInicio,frecuencia);
+  
+  if(resultado!=EXIT_SUCCESS){
+   return resultado;
+  }
+  
+  printf("Finalizara dentro de  = %ld (mllisegundos)\n", ms*1000);
+ 
+ delay(ms);
+ 
+ puts("Termino la fiesta :(");
+ 
+ return ResetPin();
+}
 int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
  struct tm ltm = {0};
  long            ms; // Milliseconds
@@ -41,11 +68,11 @@ int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
  
  delay(ms);
  
- puts("Empieza la fiesta");
+ puts("Empieza la fiesta ;)");
  
- InhibirAhoraFrecuencia(frecuencia);
+ //exit InhibirAhoraFrecuencia(frecuencia);
  
- exit(EXIT_SUCCESS);
+ return EXIT_SUCCESS;
 }
 int InhibirConTemporizador(){
  
@@ -93,8 +120,8 @@ printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
 printf("%s -i -f frecuencia => Inhibir ahora con una frecuenca en Hz.\n",argv[0]);
-printf("%s -d HH:mm:ss => Inhibir dento de HH horas mm minutos y ss segundos.\n",argv[0]);
-printf("%s -t <Hora inicio> <Hora Fin> => Inhibir entre dos horas con formato HH:mm.\n",argv[0]);
+printf("%s -s HH:mm:ss => Inhibir dento de HH horas mm minutos y ss segundos.\n",argv[0]);
+printf("%s -s HH:mm:ss -t HH:mm:ss  => Inhibir dento de HH horas mm minutos y ss segundos.\n",argv[0]);
     return EXIT_FAILURE;
 }
 if(argc==2){
@@ -112,8 +139,11 @@ else if(argc>2){
  if(argc==3 && strcmp("-d", argv[1])==0){
   //delay de timestamp
  }
- else if(argc==3 && strcmp("-t", argv[1])==0){
+ else if(argc==3 && strcmp("-s", argv[1])==0){
    return InhibirConTemporizadorDelayStr(argv[2],FRECUENCY);
+ }
+ else if(argc==5 && strcmp("-s", argv[1])==0 && strcmp("-t", argv[3])==0){
+   return InhibirConTemporizadorDelayStartStopStr(argv[2],argv[4],FRECUENCY);
  }
  
  if(argc==4 && strcmp("-i", argv[1])==0 &&strcmp("-f", argv[2])==0){
