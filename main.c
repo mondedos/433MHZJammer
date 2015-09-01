@@ -28,14 +28,15 @@ int InhibirAhoraFrecuencia(int frecuencia){
 int InhibirConTemporizadorDelayStr(const char *inputStr){
  struct tm ltm = {0};
  
- char buf[255];
+ char bufferTimmer[255];
  
  puts(inputStr);
  
  strptime(inputStr, "%T", &ltm);
  mktime(&ltm);
  
- puts(buf);
+   strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", ltm);
+  fputs (bufferTimmer, stdout);
  
  exit(EXIT_SUCCESS);
 }
@@ -105,7 +106,6 @@ else if(argc>2){
   //delay de timestamp
  }
  else if(argc==3 && strcmp("-t", argv[1])==0){
-  puts(argv[2]);
    return InhibirConTemporizadorDelayStr(argv[2]);
  }
  
