@@ -41,7 +41,7 @@ int InhibirConTemporizadorDelayStr(const char *inputStr){
  
  delay(ms);
  
- fputs("Empieza la fiesta");
+ puts("Empieza la fiesta");
  
  exit(EXIT_SUCCESS);
 }
