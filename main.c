@@ -27,13 +27,12 @@ int InhibirAhoraFrecuencia(int frecuencia){
 }
 int InhibirConTemporizadorDelayStr(const char *inputStr){
  struct tm ltm = {0};
- struct time_t timespan= {0};
  long            ms; // Milliseconds
  
  char bufferTimmer[255];
 
  strptime(inputStr, "%T", &ltm);
- timespan=mktime(&ltm);
+ time_t timespan=mktime(&ltm);
  
  ms = round(timespan.tv_nsec / 1.0e6); 
  
