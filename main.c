@@ -29,18 +29,19 @@ int InhibirConTemporizadorDelayStr(const char *inputStr){
  struct tm ltm = {0};
  long            ms; // Milliseconds
  
- char bufferTimmer[255];
-
  strptime(inputStr, "%T", &ltm);
  mktime(&ltm);
  
  ms=(long)(ltm.tm_hour*60*60)+(long)(ltm.tm_min*60)+(long)ltm.tm_sec;
  //ms = round(timespan.tv_nsec / 1.0e6); 
  
-   strftime (bufferTimmer, SIZE, "Today is %A, %B %d %Y %H:%M.\n", &ltm);
-  fputs (bufferTimmer, stdout);
+  ms=ms*1000;
   
-  printf("tmb.millitm  = %ld (mlliseconds)\n", ms*1000);
+  printf("Empezará dentro de  = %ld (mllisegundos)\n", ms*1000);
+ 
+ delay(ms);
+ 
+ fputs("Empieza la fiesta");
  
  exit(EXIT_SUCCESS);
 }
