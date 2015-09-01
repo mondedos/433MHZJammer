@@ -145,9 +145,12 @@ else if(argc>2){
   //delay de timestamp
  }
  else if(argc==3 && strcmp("-s", argv[1])==0){
+   wiringPiSetup () ;
+   
    return InhibirConTemporizadorDelayStr(argv[2],FRECUENCY);
  }
  else if(argc==5 && strcmp("-s", argv[1])==0 && strcmp("-t", argv[3])==0){
+   wiringPiSetup () ;
    return InhibirConTemporizadorDelayStartStopStr(argv[2],argv[4],FRECUENCY);
  }
  
