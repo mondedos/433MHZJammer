@@ -27,14 +27,19 @@ int InhibirAhoraFrecuencia(int frecuencia){
 }
 int InhibirConTemporizadorDelayStr(const char *inputStr){
  struct tm ltm = {0};
+ long            ms; // Milliseconds
  
  char bufferTimmer[255];
 
  strptime(inputStr, "%T", &ltm);
  mktime(&ltm);
  
+ ms = round(ltm.tv_nsec / 1.0e6); 
+ 
    strftime (bufferTimmer, SIZE, "Today is %A, %B %d %Y %H:%M.\n", &ltm);
   fputs (bufferTimmer, stdout);
+  
+  printf("tmb.millitm  = %ld (mlliseconds)\n", ms);
  
  exit(EXIT_SUCCESS);
 }
