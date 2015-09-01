@@ -30,7 +30,7 @@ int InhibirConTemporizadorDelayStr(const char *inputStr){
  
  char buf[255];
  
- puts(buf);
+ puts(inputStr);
  
  strptime(inputStr, "%T", &ltm);
  mktime(&ltm);
