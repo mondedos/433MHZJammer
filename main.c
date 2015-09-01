@@ -100,6 +100,7 @@ if(argc==2){
    return InhibirAhoraFrecuencia(FRECUENCY);
  }
  else if(strcmp("-t", argv[1])==0){
+  puts(argv[2]);
    return InhibirConTemporizadorDelayStr(argv[2]);
  }
  
