@@ -25,7 +25,20 @@ int InhibirAhoraFrecuencia(int frecuencia){
 
  return EXIT_SUCCESS;
 }
-
+int InhibirConTemporizadorDelayStr(const char *inputStr){
+ struct tm ltm = {0};
+ 
+ char buf[255];
+ 
+ puts(buf);
+ 
+ strptime(inputStr, "%T", &ltm);
+ mktime(&ltm);
+ 
+ puts(buf);
+ 
+ exit(EXIT_SUCCESS);
+}
 int InhibirConTemporizador(){
  
   char bufferTimmer[SIZE];
@@ -64,7 +77,6 @@ int ResetPin(){
 int main (int argc, char **argv, char **envp)
 {
  
-}
 if(argc==1 || strcmp("-h", argv[1])==0)
 {
     printf("Uso de %s\n",argv[0]);
@@ -88,7 +100,7 @@ if(argc==2){
    return InhibirAhoraFrecuencia(FRECUENCY);
  }
  else if(strcmp("-t", argv[1])==0){
-   return InhibirConTemporizador();
+   return InhibirConTemporizadorDelayStr(argv[2]);
  }
  
 }
