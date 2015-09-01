@@ -25,7 +25,7 @@ int InhibirAhoraFrecuencia(int frecuencia){
 
  return EXIT_SUCCESS;
 }
-int InhibirConTemporizadorDelayStr(const char *inputStr){
+int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
  struct tm ltm = {0};
  long            ms; // Milliseconds
  
@@ -42,6 +42,8 @@ int InhibirConTemporizadorDelayStr(const char *inputStr){
  delay(ms);
  
  puts("Empieza la fiesta");
+ 
+ InhibirAhoraFrecuencia(frecuencia);
  
  exit(EXIT_SUCCESS);
 }
@@ -111,7 +113,7 @@ else if(argc>2){
   //delay de timestamp
  }
  else if(argc==3 && strcmp("-t", argv[1])==0){
-   return InhibirConTemporizadorDelayStr(argv[2]);
+   return InhibirConTemporizadorDelayStr(argv[2],FRECUENCY);
  }
  
  if(argc==4 && strcmp("-i", argv[1])==0 &&strcmp("-f", argv[2])==0){
