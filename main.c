@@ -57,9 +57,7 @@ int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
  
  puts("Empieza la fiesta ;)");
  
- //exit InhibirAhoraFrecuencia(frecuencia);
- 
- return EXIT_SUCCESS;
+ return InhibirAhoraFrecuencia(frecuencia);
 }
 
 int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const char *inputStrFin,int frecuencia){
