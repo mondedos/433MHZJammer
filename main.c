@@ -73,6 +73,7 @@ printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
 printf("%s -i -f frecuencia => Inhibir ahora con una frecuenca en Hz.\n",argv[0]);
+printf("%s -d HH:mm:ss => Inhibir dento de HH horas mm minutos y ss segundos.\n",argv[0]);
 printf("%s -t <Hora inicio> <Hora Fin> => Inhibir entre dos horas con formato HH:mm.\n",argv[0]);
     return EXIT_FAILURE;
 }
@@ -92,6 +93,10 @@ if(argc==2){
  
 }
 else if(argc>2){
+ if(argc==3 && strcmp("-d", argv[1])==0){
+  //delay de timestamp
+ }
+ 
  if(argc==4 && strcmp("-i", argv[1])==0 &&strcmp("-f", argv[2])==0){
   int frecuencia = atoi(argv[3]);
   
