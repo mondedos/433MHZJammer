@@ -12,7 +12,7 @@
 
  #define PIN     0
  
- #define FRECUENCY 5000
+ #define FRECUENCY 15000
  #define MINFRECUENCY 1500
  #define MAXFRECUENCY 5000
 
