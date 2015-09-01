@@ -32,14 +32,15 @@ int InhibirConTemporizadorDelayStr(const char *inputStr){
  char bufferTimmer[255];
 
  strptime(inputStr, "%T", &ltm);
- time_t timespan=mktime(&ltm);
+ mktime(&ltm);
  
- ms = round(timespan.tv_nsec / 1.0e6); 
+ ms=(long)(ltm.tm_hour*60*60)+(long)(ltm.tm_min*60)+(long)ltm.tm_sec;
+ //ms = round(timespan.tv_nsec / 1.0e6); 
  
    strftime (bufferTimmer, SIZE, "Today is %A, %B %d %Y %H:%M.\n", &ltm);
   fputs (bufferTimmer, stdout);
   
-  printf("tmb.millitm  = %ld (mlliseconds)\n", ms);
+  printf("tmb.millitm  = %ld (mlliseconds)\n", ms*1000);
  
  exit(EXIT_SUCCESS);
 }
