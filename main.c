@@ -103,6 +103,13 @@ int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const cha
  return ResetPin();
 }
 
+int PinTest(){
+     digitalWrite (PIN, HIGH) ; delay (500) ;
+    digitalWrite (PIN,  LOW) ; delay (500) ;
+    
+     return EXIT_SUCCESS;
+}
+
 int main (int argc, char **argv, char **envp)
 {
  
@@ -111,6 +118,7 @@ if(argc==1 || strcmp("-h", argv[1])==0)
     printf("Uso de %s\n",argv[0]);
 printf("\n");
 printf("%s -h => Ayuda.\n",argv[0]);
+printf("%s -pt => PIN Test en pin %d.\n",argv[0],PIN);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
 printf("%s -i -f frecuencia => Inhibir ahora con una frecuenca en Hz.\n",argv[0]);
@@ -125,7 +133,13 @@ if(argc==2){
     fprintf (stderr, "setup failed\n") ;
     exit (1) ;
   }
- return  ResetPin();
+ else if(strcmp("-pt", argv[1])==0){
+  if (wiringPiSetup () < 0)
+  {
+    fprintf (stderr, "setup failed\n") ;
+    exit (1) ;
+  }
+ return  PinTest();
  }
  else if(strcmp("-i", argv[1])==0){
   if (wiringPiSetup () < 0)
