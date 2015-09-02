@@ -34,7 +34,7 @@ int InhibirAhoraFrecuencia(int frecuencia){
  rc=softToneCreate (PIN);
  
  if (rc){
-   fprintf(stdout"ERROR; return code from pthread_create() is %d\n", rc);
+   fprintf(stdout, "ERROR; return code from pthread_create() is %d\n", rc);
    
    fflush( stdout) ; 
    return EXIT_FAILURE;
