@@ -32,7 +32,7 @@ int InhibirAhoraFrecuencia(int frecuencia){
  
  softToneCreate (PIN);
  
- printf("Tono de frecuencia %dHz.\n",frecuencia);
+ printf(stdout,"Tono de frecuencia %dHz.\n",frecuencia);
  
  fflush( stdout) ; 
  
@@ -53,12 +53,12 @@ int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
  
   ms=ms*1000;
   
-  printf("Empezará dentro de  = %ld (mllisegundos)\n", ms*1000);
+  printf(stdout,"Empezará dentro de  = %ld (mllisegundos)\n", ms*1000);
   fflush( stdout) ; 
  
  delay(ms);
  
- puts("Empieza la fiesta ;)");
+ puts(stdout,"Empieza la fiesta ;)");
  fflush( stdout) ; 
  
  return InhibirAhoraFrecuencia(frecuencia);
@@ -83,12 +83,12 @@ int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const cha
    return resultado;
   }
   
-  printf("Finalizara dentro de  = %ld (mllisegundos)\n", ms*1000);
+  printf(stdout,"Finalizara dentro de  = %ld (mllisegundos)\n", ms*1000);
   fflush( stdout) ; 
  
  delay(ms);
  
- puts("Termino la fiesta :(\n");
+ puts(stdout,"Termino la fiesta :(\n");
  fflush( stdout) ; 
  
  return ResetPin();
@@ -137,11 +137,19 @@ printf("%s -s HH:mm:ss -t HH:mm:ss  => Inhibir dento de HH horas mm minutos y ss
 }
 if(argc==2){
  if(strcmp("-r", argv[1])==0){
-  wiringPiSetup();
+  if (wiringPiSetup () < 0)
+  {
+    fprintf (stderr, "setup failed\n") ;
+    exit (1) ;
+  }
  return  ResetPin();
  }
  else if(strcmp("-i", argv[1])==0){
-  wiringPiSetup();
+  if (wiringPiSetup () < 0)
+  {
+    fprintf (stderr, "setup failed\n") ;
+    exit (1) ;
+  }
    return InhibirAhoraFrecuencia(FRECUENCY);
  }
 }
@@ -150,12 +158,20 @@ else if(argc>2){
   //delay de timestamp
  }
  else if(argc==3 && strcmp("-s", argv[1])==0){
-   wiringPiSetup () ;
+  if (wiringPiSetup () < 0)
+  {
+    fprintf (stderr, "setup failed\n") ;
+    exit (1) ;
+  }
    
    return InhibirConTemporizadorDelayStr(argv[2],FRECUENCY);
  }
  else if(argc==5 && strcmp("-s", argv[1])==0 && strcmp("-t", argv[3])==0){
-   wiringPiSetup () ;
+  if (wiringPiSetup () < 0)
+  {
+    fprintf (stderr, "setup failed\n") ;
+    exit (1) ;
+  }
    
    return InhibirConTemporizadorDelayStartStopStr(argv[2],argv[4],FRECUENCY);
  }
