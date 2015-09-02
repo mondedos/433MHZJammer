@@ -1,4 +1,4 @@
-all: fetch merge merge
+all: fetch merge comp_main
 
 fetch:
 	git fetch origin 
