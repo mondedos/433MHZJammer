@@ -18,6 +18,7 @@
 
 
 int ResetPin(){
+ pinMode (PIN, OUTPUT) ;
  
   softToneStop(PIN);delay (1500) ;
   
@@ -30,7 +31,9 @@ int ResetPin(){
 
 int InhibirAhoraFrecuencia(int frecuencia){
  int rc;
- char buffer[SIZE];
+ //char buffer[SIZE];
+  
+ pinMode (PIN, OUTPUT) ;
   
  rc=softToneCreate (PIN);
  
@@ -135,6 +138,7 @@ if(argc==2){
     fflush( stdout) ;
     exit (1) ;
   }
+  return ResetPin();
  }
  else if(strcmp("-pt", argv[1])==0){
   if (wiringPiSetup () < 0)
