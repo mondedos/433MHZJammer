@@ -40,11 +40,11 @@ int InhibirAhoraFrecuencia(int frecuencia){
    fflush( stdout) ; 
    return EXIT_FAILURE;
  }
- 
+ /**
  sprintf (buffer, "Tono de frecuencia %3dHz.\n", frecuencia);
  fputs (buffer,stdout);
  fflush( stdout) ; 
- 
+ */
  softToneWrite (PIN, frecuencia);
 
  return EXIT_SUCCESS;
