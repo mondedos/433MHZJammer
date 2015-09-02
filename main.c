@@ -29,9 +29,16 @@ int ResetPin(){
 }
 
 int InhibirAhoraFrecuencia(int frecuencia){
+ int rc;
  
- softToneCreate (PIN);
+ rc=softToneCreate (PIN);
  
+ if (rc){
+   fprintf(stdout"ERROR; return code from pthread_create() is %d\n", rc);
+   
+   fflush( stdout) ; 
+   return EXIT_FAILURE;
+ }
  fprintf(stdout,"Tono de frecuencia %dHz.\n",frecuencia);
  
  fflush( stdout) ; 
@@ -58,7 +65,7 @@ int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
  
  delay(ms);
  
- puts("Empieza la fiesta ;)");
+ fprintf(stdout,"Empieza la fiesta ;)");
  fflush( stdout) ; 
  
  return InhibirAhoraFrecuencia(frecuencia);
@@ -88,37 +95,11 @@ int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const cha
  
  delay(ms);
  
- puts("Termino la fiesta :(\n");
+ fprintf(stdout,"Termino la fiesta :(\n");
  fflush( stdout) ; 
  
  return ResetPin();
 }
-
-int InhibirConTemporizador(){
- 
-  char bufferTimmer[SIZE];
-  time_t curtime;
-  struct tm *loctime;
-  
-    /* Get the current time. */
-  curtime = time (NULL);
-
-  /* Convert it to local time representation. */
-  loctime = localtime (&curtime);
-
-  /* Print out the date and time in the standard format. */
-  fputs (asctime (loctime), stdout);
- 
- /* Print it out in a nice format. */
-  strftime (bufferTimmer, SIZE, "Today is %A, %B %d.\n", loctime);
-  fputs (bufferTimmer, stdout);
-  strftime (bufferTimmer, SIZE, "The time is %I:%M %p.\n", loctime);
-  fputs (bufferTimmer, stdout);
- 
- return EXIT_SUCCESS;
-}
-
-
 
 int main (int argc, char **argv, char **envp)
 {
