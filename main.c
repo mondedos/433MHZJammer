@@ -41,7 +41,7 @@ int InhibirAhoraFrecuencia(int frecuencia){
    return EXIT_FAILURE;
  }
  
- sprintf (buffer, "Tono de frecuencia %3dHz.\n", frecuencia);
+ sprintf (buffer, "Tono de frecuencia %3dHz.", frecuencia);
  fputs (buffer,stdout);
  fflush( stdout) ; 
  
@@ -106,11 +106,11 @@ int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const cha
 int PinTest(){
  fprintf(stdout,"Pin ON\n");
  fflush( stdout) ; 
-     digitalWrite (PIN, HIGH) ; delay (500) ;
+     digitalWrite (PIN, HIGH) ; delay (1500) ;
      
      fprintf(stdout,"Pin Off\n");
  fflush( stdout) ; 
-    digitalWrite (PIN,  LOW) ; delay (500) ;
+    digitalWrite (PIN,  LOW) ; delay (1500) ;
     
      return EXIT_SUCCESS;
 }
