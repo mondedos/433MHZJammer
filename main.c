@@ -117,6 +117,14 @@ int PinTest(){
     
      return EXIT_SUCCESS;
 }
+int SetValor(int valor){
+ int nuevoValor=valor==1?HIGH:LOW;
+ fprintf(stdout,nuevoValor==HIGH?"Pin ON\n":"Pin Off\n");
+ fflush( stdout) ; 
+     digitalWrite (PIN, nuevoValor) ; 
+    
+     return EXIT_SUCCESS;
+}
 
 int main (int argc, char **argv, char **envp)
 {
@@ -129,6 +137,7 @@ printf("%s -h => Ayuda.\n",argv[0]);
 printf("%s -pt => PIN Test en pin %d.\n",argv[0],PIN);
 printf("%s -r => Apagado del módulo.\n",argv[0]);
 printf("%s -i => Inhibir ahora.\n",argv[0]);
+printf("%s -ct 1 => Inhibir ahora con pulso 1 o 0.\n",argv[0]);
 printf("%s -i -f frecuencia => Inhibir ahora con una frecuenca en Hz.\n",argv[0]);
 printf("%s -s HH:mm:ss => Inhibir dento de HH horas mm minutos y ss segundos.\n",argv[0]);
 printf("%s -s HH:mm:ss -t HH:mm:ss  => Inhibir dento de HH horas mm minutos y ss segundos.\n",argv[0]);
@@ -164,8 +173,18 @@ if(argc==2){
  }
 }
 else if(argc>2){
- if(argc==3 && strcmp("-d", argv[1])==0){
-  //delay de timestamp
+ if(argc==3 && strcmp("-ct", argv[1])==0){
+  if (wiringPiSetup () < 0)
+  {
+   fprintf (stdout, "setup failed\n") ;
+    fflush( stdout) ;
+    exit (1) ;
+  }
+  
+  int valor = atoi(argv[2]);
+  
+  return SetValor(valor);
+  
  }
  else if(argc==3 && strcmp("-s", argv[1])==0){
   if (wiringPiSetup () < 0)
