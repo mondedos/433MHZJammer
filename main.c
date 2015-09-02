@@ -58,7 +58,7 @@ int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
  
  delay(ms);
  
- puts(stdout,"Empieza la fiesta ;)");
+ puts("Empieza la fiesta ;)");
  fflush( stdout) ; 
  
  return InhibirAhoraFrecuencia(frecuencia);
