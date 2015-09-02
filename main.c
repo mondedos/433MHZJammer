@@ -32,7 +32,11 @@ int InhibirAhoraFrecuencia(int frecuencia){
  
  softToneCreate (PIN);
  
+ delay(500);
+ 
  printf("Tono de frecuencia %dHz.\n",frecuencia);
+ 
+ delay(500);
  
  softToneWrite (PIN, frecuencia);
 
