@@ -33,7 +33,7 @@ int InhibirAhoraFrecuencia(int frecuencia){
  int rc;
  //char buffer[SIZE];
   
- pinMode (PIN, OUTPUT) ;
+ pinMode (PIN, OUTPUT) ;delay (500) ;
   
  rc=softToneCreate (PIN);
  
@@ -43,6 +43,10 @@ int InhibirAhoraFrecuencia(int frecuencia){
    fflush( stdout) ; 
    return EXIT_FAILURE;
  }
+ 
+ fprintf(stdout, "Generando tono a %dHz.\n", frecuencia);
+   
+   fflush( stdout) ; delay (500) ;
  
  softToneWrite (PIN, frecuencia);
 
