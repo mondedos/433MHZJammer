@@ -32,7 +32,7 @@ int InhibirAhoraFrecuencia(int frecuencia){
  
  softToneCreate (PIN);
  
- //printf("Tono de frecuencia %dHz.\n",frecuencia);
+ printf("Tono de frecuencia %dHz.\n",frecuencia);
  
  softToneWrite (PIN, frecuencia);
 
@@ -130,13 +130,12 @@ printf("%s -s HH:mm:ss -t HH:mm:ss  => Inhibir dento de HH horas mm minutos y ss
     return EXIT_FAILURE;
 }
 if(argc==2){
- 
- wiringPiSetup () ;
- 
  if(strcmp("-r", argv[1])==0){
+  wiringPiSetup();
  return  ResetPin();
  }
  else if(strcmp("-i", argv[1])==0){
+  wiringPiSetup();
    return InhibirAhoraFrecuencia(FRECUENCY);
  }
 }
@@ -151,6 +150,7 @@ else if(argc>2){
  }
  else if(argc==5 && strcmp("-s", argv[1])==0 && strcmp("-t", argv[3])==0){
    wiringPiSetup () ;
+   
    return InhibirConTemporizadorDelayStartStopStr(argv[2],argv[4],FRECUENCY);
  }
  
