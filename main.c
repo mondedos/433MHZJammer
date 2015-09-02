@@ -131,14 +131,16 @@ if(argc==2){
  if(strcmp("-r", argv[1])==0){
   if (wiringPiSetup () < 0)
   {
-    fprintf (stderr, "setup failed\n") ;
+    fprintf (stdout, "setup failed\n") ;
+    fflush( stdout) ;
     exit (1) ;
   }
  }
  else if(strcmp("-pt", argv[1])==0){
   if (wiringPiSetup () < 0)
   {
-    fprintf (stderr, "setup failed\n") ;
+   fprintf (stdout, "setup failed\n") ;
+    fflush( stdout) ;
     exit (1) ;
   }
  return  PinTest();
@@ -146,7 +148,8 @@ if(argc==2){
  else if(strcmp("-i", argv[1])==0){
   if (wiringPiSetup () < 0)
   {
-    fprintf (stderr, "setup failed\n") ;
+    fprintf (stdout, "setup failed\n") ;
+    fflush( stdout) ;
     exit (1) ;
   }
    return InhibirAhoraFrecuencia(FRECUENCY);
@@ -159,7 +162,8 @@ else if(argc>2){
  else if(argc==3 && strcmp("-s", argv[1])==0){
   if (wiringPiSetup () < 0)
   {
-    fprintf (stderr, "setup failed\n") ;
+   fprintf (stdout, "setup failed\n") ;
+    fflush( stdout) ;
     exit (1) ;
   }
    
@@ -168,7 +172,8 @@ else if(argc>2){
  else if(argc==5 && strcmp("-s", argv[1])==0 && strcmp("-t", argv[3])==0){
   if (wiringPiSetup () < 0)
   {
-    fprintf (stderr, "setup failed\n") ;
+   fprintf (stdout, "setup failed\n") ;
+    fflush( stdout) ;
     exit (1) ;
   }
    
