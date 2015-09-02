@@ -19,11 +19,11 @@
 
 int ResetPin(){
  
-  softToneStop(PIN);
+  softToneStop(PIN);delay (1500) ;
   
-  pinMode (PIN, OUTPUT) ;
+  pinMode (PIN, OUTPUT) ;delay (1500) ;
   
-  digitalWrite (PIN,  LOW) ;
+  digitalWrite (PIN,  LOW) ;delay (1500) ;
   
   return EXIT_SUCCESS;
 }
