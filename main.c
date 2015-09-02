@@ -34,6 +34,14 @@ int InhibirAhoraFrecuencia(int frecuencia){
   
  rc=softToneCreate (PIN);
  
+    fprintf(stdout,"Pin ON\n");
+ fflush( stdout) ; 
+     digitalWrite (PIN, HIGH) ; delay (1500) ;
+     
+     fprintf(stdout,"Pin Off\n");
+ fflush( stdout) ; 
+    digitalWrite (PIN,  LOW) ; delay (1500) ;
+ 
  if (rc){
    fprintf(stdout, "ERROR; return code from pthread_create() is %d\n", rc);
    
