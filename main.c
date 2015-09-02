@@ -19,11 +19,11 @@
 
 int ResetPin(){
  
+  softToneStop(PIN);
+  
   pinMode (PIN, OUTPUT) ;
   
   digitalWrite (PIN,  LOW) ;
-  
-  softToneStop(PIN);
   
   return EXIT_SUCCESS;
 }
@@ -40,11 +40,11 @@ int InhibirAhoraFrecuencia(int frecuencia){
    fflush( stdout) ; 
    return EXIT_FAILURE;
  }
- /**
+ 
  sprintf (buffer, "Tono de frecuencia %3dHz.\n", frecuencia);
  fputs (buffer,stdout);
  fflush( stdout) ; 
- */
+ 
  softToneWrite (PIN, frecuencia);
 
  return EXIT_SUCCESS;
@@ -104,7 +104,12 @@ int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const cha
 }
 
 int PinTest(){
+ fprintf(stdout,"Pin ON\n");
+ fflush( stdout) ; 
      digitalWrite (PIN, HIGH) ; delay (500) ;
+     
+     fprintf(stdout,"Pin Off\n");
+ fflush( stdout) ; 
     digitalWrite (PIN,  LOW) ; delay (500) ;
     
      return EXIT_SUCCESS;
