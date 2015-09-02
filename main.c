@@ -88,7 +88,7 @@ int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const cha
  
  delay(ms);
  
- puts(stdout,"Termino la fiesta :(\n");
+ puts("Termino la fiesta :(\n");
  fflush( stdout) ; 
  
  return ResetPin();
