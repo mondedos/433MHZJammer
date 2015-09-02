@@ -133,6 +133,7 @@ if(argc==2){
     fprintf (stderr, "setup failed\n") ;
     exit (1) ;
   }
+ }
  else if(strcmp("-pt", argv[1])==0){
   if (wiringPiSetup () < 0)
   {
