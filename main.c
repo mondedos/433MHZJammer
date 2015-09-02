@@ -41,7 +41,7 @@ int InhibirAhoraFrecuencia(int frecuencia){
    return EXIT_FAILURE;
  }
  
- fprintf (buffer, SIZE, "Tono de frecuencia %dHz.\n", frecuencia);
+ sprintf (buffer, SIZE, "Tono de frecuencia %dHz.\n", frecuencia);
  fputs (buffer,stdout);
  fflush( stdout) ; 
  
