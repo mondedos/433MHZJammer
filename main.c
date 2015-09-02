@@ -32,7 +32,7 @@ int InhibirAhoraFrecuencia(int frecuencia){
  
  softToneCreate (PIN);
  
- printf(stdout,"Tono de frecuencia %dHz.\n",frecuencia);
+ fprintf(stdout,"Tono de frecuencia %dHz.\n",frecuencia);
  
  fflush( stdout) ; 
  
@@ -53,7 +53,7 @@ int InhibirConTemporizadorDelayStr(const char *inputStr,int frecuencia){
  
   ms=ms*1000;
   
-  printf(stdout,"Empezará dentro de  = %ld (mllisegundos)\n", ms*1000);
+  fprintf(stdout,"Empezará dentro de  = %ld (mllisegundos)\n", ms*1000);
   fflush( stdout) ; 
  
  delay(ms);
@@ -83,7 +83,7 @@ int InhibirConTemporizadorDelayStartStopStr(const char *inputStrInicio,const cha
    return resultado;
   }
   
-  printf(stdout,"Finalizara dentro de  = %ld (mllisegundos)\n", ms*1000);
+  fprintf(stdout,"Finalizara dentro de  = %ld (mllisegundos)\n", ms*1000);
   fflush( stdout) ; 
  
  delay(ms);
