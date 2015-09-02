@@ -30,7 +30,8 @@ int ResetPin(){
 
 int InhibirAhoraFrecuencia(int frecuencia){
  int rc;
- 
+ char buffer[SIZE];
+  
  rc=softToneCreate (PIN);
  
  if (rc){
@@ -39,8 +40,9 @@ int InhibirAhoraFrecuencia(int frecuencia){
    fflush( stdout) ; 
    return EXIT_FAILURE;
  }
- fprintf(stdout,"Tono de frecuencia %dHz.\n",frecuencia);
  
+ fprintf (buffer, SIZE, "Tono de frecuencia %dHz.\n", frecuencia);
+ fputs (buffer,stdout);
  fflush( stdout) ; 
  
  softToneWrite (PIN, frecuencia);
